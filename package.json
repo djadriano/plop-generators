@@ -5,7 +5,6 @@
   "author": "Adriano Fernandes <djadrianof@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@djadrianof/boilerplate-generator": "^1.0.2",
     "chalk": "^4.0.0",
     "node-plop": "^0.25.0"
   },
@@ -14,8 +13,7 @@
     "url": "https://github.com/djadriano/plop-generators.git"
   },
   "scripts": {
-    "test": "node ./src/index.js",
-    "foo": "boilerplate-generate"
+    "test": "node ./src/index.js"
   },
   "bin": {
     "boilerplate-generate": "./src/index.js"
