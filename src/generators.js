@@ -1,4 +1,6 @@
 const { validName } = require('./utils');
+const path = require('path');
+const cwd = path.resolve('.')
 
 const component = {
     description: 'Create a component',
@@ -42,7 +44,7 @@ const component = {
         }
     ],
     actions: ({ options, isSimple }) => {
-        const path = 'components/';
+        const path = `${cwd}/src/components/`;
 
         let actions = [
             {
