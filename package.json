@@ -1,0 +1,18 @@
+{
+  "name": "boilerplate-generator",
+  "description": "Plop generator for Mirabeau Boilerplate",
+  "version": "1.0.0",
+  "repository": "git@github.com:mirabeau-nl/boilerplate-generator.git",
+  "author": "Adriano Fernandes <afernandes@mirabeau.nl>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "node-plop": "^0.25.0"
+  },
+  "scripts": {
+    "test": "node ./src/index.js"
+  },
+  "bin": {
+    "boilerplate-generate": "./src/index.js"
+  }
+}

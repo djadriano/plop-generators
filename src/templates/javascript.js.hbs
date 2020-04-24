@@ -1,0 +1,46 @@
+/**
+ * @module {{pascalCase name}}
+ */
+class {{pascalCase name}} {
+
+    /**
+     * Class constructor
+     * @param {HTMLElement} element - The HTMLElement this module is constructed upon
+     * @param {Object} options - ConditionerJS's merged options
+     */
+    constructor(element, options) {
+        this._element = element;
+        this._options = { ...{{pascalCase name}}._defaultOptions, ...options }
+
+        this._load();
+    }
+
+    /**
+     * Register the Default options
+     * @private
+     */
+    static _defaultOptions = {}
+
+    /**
+     * Register the Listeners
+     * @private
+     */
+    _registerListeners() {}
+
+    /**
+     * Cache selectors
+     * @private
+     */
+    _cacheSelectors() {}
+
+    /**
+     * Init
+     * @private
+     */
+    _load() {
+        this._cacheSelectors();
+        this._registerListeners();
+    }
+}
+
+export default {{pascalCase name}};
