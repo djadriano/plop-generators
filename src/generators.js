@@ -1,6 +1,10 @@
-const { validName } = require('./utils');
 const path = require('path');
-const cwd = path.resolve('.')
+const cwd = path.resolve('.');
+const { validName, getConfig } = require('./utils');
+
+const { argv } = process;
+const isSimple = argv.includes('--simple');
+const config = getConfig();
 
 const component = {
     description: 'Create a component',
@@ -12,15 +16,7 @@ const component = {
             validate: validName('component', 'name')
         },
         {
-            type: 'confirm',
-            name: 'isSimple',
-            message: 'Is it a simple component?',
-            default: true
-        },
-        {
-            when: response => {
-                return response.isSimple === false;
-            },
+            when: () => !isSimple,
             type: 'checkbox',
             name: 'options',
             message: 'What do you want to include?',
@@ -34,6 +30,13 @@ const component = {
                     }
                 },
                 {
+                    name: 'Json Data',
+                    value: {
+                        fileName: '{{dashCase name}}.json',
+                        templateName: 'json.js.hbs'
+                    }
+                },
+                {
                     name: 'Test file',
                     value: {
                         fileName: '{{pascalCase name}}.Spec.js',
@@ -43,29 +46,31 @@ const component = {
             ]
         }
     ],
-    actions: ({ options, isSimple }) => {
-        const path = `${cwd}/src/components/`;
+    actions: ({ options }) => {
+        const { componentsDir, scssFilePath, relativeComponentsPath } = config;
+        const componentsDirPath = `${cwd}/${componentsDir}`;
 
         let actions = [
             {
                 type: 'add',
-                path: `${path}{{dashCase name}}/{{dashCase name}}.njk`,
-                templateFile: './templates/component.js.hbs'
+                path: `${componentsDirPath}/{{dashCase name}}/{{dashCase name}}.njk`,
+                templateFile: './templates/component.js.hbs',
+                data: { isSimple: isSimple }
             },
             {
                 type: 'add',
-                path: `${path}{{dashCase name}}/{{dashCase name}}.yml`,
+                path: `${componentsDirPath}/{{dashCase name}}/{{dashCase name}}.yml`,
                 templateFile: './templates/docs.js.hbs'
             },
             {
                 type: 'add',
-                path: `${path}{{dashCase name}}/{{dashCase name}}.json`,
-                templateFile: './templates/json.js.hbs'
+                path: `${componentsDirPath}/{{dashCase name}}/{{dashCase name}}.scss`,
+                templateFile: './templates/style.js.hbs'
             },
             {
-                type: 'add',
-                path: `${path}{{dashCase name}}/{{dashCase name}}.scss`,
-                templateFile: './templates/style.js.hbs'
+                type: 'append',
+                path: `${cwd}/${scssFilePath}`,
+                template: `@import "${relativeComponentsPath}/{{dashCase name}}/{{dashCase name}}";`
             }
         ];
 
@@ -73,7 +78,7 @@ const component = {
             options.forEach(({ fileName, templateName }) => {
                 actions = [...actions, {
                     type: 'add',
-                    path: `${path}{{dashCase name}}/${fileName}`,
+                    path: `${componentsDirPath}/{{dashCase name}}/${fileName}`,
                     templateFile: `./templates/${templateName}`
                 }];
             });

@@ -1,7 +1,7 @@
 {
   "name": "@djadrianof/boilerplate-generator",
   "description": "Plop generator Boilerplate",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Adriano Fernandes <djadrianof@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -16,6 +16,6 @@
     "test": "node ./src/index.js"
   },
   "bin": {
-    "boilerplate-generate": "./src/index.js"
+    "mbg": "./src/index.js"
   }
 }

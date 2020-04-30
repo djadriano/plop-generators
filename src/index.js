@@ -39,8 +39,4 @@ const runGenerator = async () => {
   }
 };
 
-runGenerator().then(() => {
-  process.exit(0);
-}).catch(() => {
-  process.exit(1);
-});
+runGenerator();
