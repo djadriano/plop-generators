@@ -105,16 +105,18 @@ const template = {
         }
     ],
     actions: ({ isCreateFolder }) => {
-        let path = `src/templates${isCreateFolder ? '/{{dashCase name}}' : '/'}`;
+        const { templatesDir } = config;
+        const componentsDirPath = `${cwd}/${templatesDir}${isCreateFolder ? '/{{dashCase name}}' : '/'}`;
+
         let actions = [
             {
                 type: 'add',
-                path: `${path}/{{dashCase name}}.njk`,
+                path: `${componentsDirPath}/{{dashCase name}}.njk`,
                 templateFile: './templates/template.js.hbs'
             },
             {
                 type: 'add',
-                path: `${path}/{{dashCase name}}.json`,
+                path: `${componentsDirPath}/{{dashCase name}}.json`,
                 templateFile: './templates/json.js.hbs'
             }
         ];

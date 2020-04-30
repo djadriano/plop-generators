@@ -1,7 +1,7 @@
 {
   "name": "@djadrianof/boilerplate-generator",
   "description": "Plop generator Boilerplate",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Adriano Fernandes <djadrianof@gmail.com>",
   "license": "MIT",
   "dependencies": {

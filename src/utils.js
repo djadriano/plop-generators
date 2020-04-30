@@ -4,6 +4,7 @@ const cwd = path.resolve('.');
 
 let config = {
     componentsDir: `src/components`,
+    templatesDir: `src/templates`,
     scssFilePath: `src/static/scss/all.scss`,
     relativeComponentsPath: '../../../components'
 }

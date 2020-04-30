@@ -5,7 +5,7 @@ const nodePlop = require('node-plop');
 const plop = nodePlop(`${__dirname}/plopfile.js`);
 
 const { argv } = process;
-const isTemplate = argv.includes('template');
+const isTemplate = argv.includes('--template');
 const generatorName = isTemplate ? 'template' : 'component';
 
 const logChange = line => console.log(chalk.green('✔ ++'), line.path);
